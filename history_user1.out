@@ -1,0 +1,6 @@
+    1  timedatectl
+    2  sudo date -s "2026-10-08 12:00:00"
+    3  timedatectl
+    4  sudo timedatectl set-time "2026-10-08 12:00:00"
+    5  exit
+    6  history > ~/history_user1.out

@@ -1,0 +1,41 @@
+    1  getent passwd 1234
+    2  getent group students
+    3  sudo groupadd students
+    4  sudo useradd -u 1234 -m -G students -s /bin/bash user1
+    5  sudo passwd user1
+    6  sudo chage -M 90 user1
+    7  id user1
+    8  getent passwd user1
+    9  sudo chage -l user1
+   10  stat /home/user1
+   11  sudo find / -type f -perm -4000 -ls 2>/dev/null > ~/suid_files.out
+   12  ps -eo euid,ruid,pid,ppid,euser,ruser,args | awk 'NR==1 || ($1==0 && $2>=1000 && $2<65534)'
+   13  ps -eo euid,ruid,pid,ppid,euser,ruser,args | awk 'NR==1 || ($1==0 && $2>=1000 && $2<65534)' | tee ~/proc_monitor.out
+   14  sudo cp /usr/bin/cat /home/user1/mycat
+   15  sudo chown root:root /home/user1/mycat
+   16  sudo chmod u+s /home/user1/mycat
+   17  ls -l /home/user1/mycat
+   18  sudo cp /usr/bin/chown /home/user1/mychown
+   19  sudo chown root:root /home/user1/mychown
+   20  sudo chmod 755 /home/user1/mychown
+   21  sudo setcap cap_chown+ep /home/user1/mychown
+   22  getcap /home/user1/mychown
+   23  sudo visudo
+   24  sudo visudo -c
+   25  sudo -l -U user1
+   26  su - user1
+   27  echo "Уникальный номер (табельный/бухгалтерский шифр): М265224"
+   28  stat /home/user1 > ~/stat.out
+   29  stat /home/user1/mycat >> ~/stat.out
+   30  sudo stat /home/user1/mycat >> ~/stat.out
+   31  sudo stat /home/user1/mychown >> ~/stat.out
+   32  sudo getcap /home/user1/mychown > ~/getcap.out
+   33  mkdir ~/etc_copy
+   34  sudo cp /etc/passwd /etc/shadow /etc/group /etc/sudoers ~/etc_copy/
+   35  sudo chown -R alex:alex ~/etc_copy
+   36  pwd
+   37  ll
+   38  su - user1
+   39  sudo cp /home/user1/history_user1.out ~/
+   40  sudo chown alex:alex ~/history_user1.out
+   41  history > ~/history.out
