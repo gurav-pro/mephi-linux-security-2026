@@ -125,17 +125,17 @@ cat /etc/shadow
 
 **Задание:** Выбрать существующую утилиту (команду BASH). Придумать операцию, которая для своего выполнения требует права root. Например, изменение владельца файла на произвольного пользователя командой chown.
 
-**Выбранная утилита:** `chown`.
-**Привилегированная операция:** смена владельца файла на произвольного пользователя (требуется `CAP_CHOWN`).
+**Выбранная утилита:** chown.
+**Привилегированная операция:** смена владельца файла на произвольного пользователя (требуется CAP_CHOWN).
 ```
 sudo cp /usr/bin/chown /home/user1/mychown
 sudo chown root:root /home/user1/mychown
 sudo chmod 755 /home/user1/mychown
 sudo setcap cap_chown+ep /home/user1/mychown
-getcap /home/user1/mychown    # /home/user1/mychown cap_chown=ep
+getcap /home/user1/mychown 
 ```
  
-**Проверка от имени `user1`:**
+**Проверка от имени user1:**
  
 ```
 touch ~/testfile
@@ -151,7 +151,7 @@ ls -l ~/testfile
  
 **Задание:** С помощью механизма sudo разрешить пользователю user1 устанавливать (изменять) системное время.
  
-Правило добавлено командой `sudo visudo` в `/etc/sudoers`:
+Правило добавлено командой sudo visudo в /etc/sudoers:
  
 ```
 user1 ALL=(root) /usr/bin/date, /usr/bin/timedatectl, /usr/sbin/hwclock
@@ -188,7 +188,7 @@ history > ~/history.out
  
 ## Проверка после перезагрузки
  
-После `sudo reboot` проверено, что настройки сохранились:
+После sudo reboot проверено, что настройки сохранились:
  
 ```bash
 id user1
@@ -198,4 +198,4 @@ getcap /home/user1/mychown
 sudo -l -U user1
 ```
  
-Утилиты `mycat` и `mychown` по-прежнему работают от имени `user1`.
+Утилиты mycat и mychown работают от имени user1.
